@@ -1,0 +1,392 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>CFO Decision Cockpit</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <svg class="icon-sprite" aria-hidden="true">
+      <symbol id="i-home" viewBox="0 0 24 24"><path d="M3 11.5 12 4l9 7.5v8a1 1 0 0 1-1 1h-5.2v-6.2H9.2v6.2H4a1 1 0 0 1-1-1z"/></symbol>
+      <symbol id="i-trend" viewBox="0 0 24 24"><path d="M4 17h16M5 15l4.5-5 4 3 5-7M17 6h2v2"/></symbol>
+      <symbol id="i-bank" viewBox="0 0 24 24"><path d="M4 9h16L12 4zM6 10v8M10 10v8M14 10v8M18 10v8M4 20h16"/></symbol>
+      <symbol id="i-cycle" viewBox="0 0 24 24"><path d="M7 7a7 7 0 0 1 11 2M17 4v5h-5M17 17a7 7 0 0 1-11-2M7 20v-5h5"/></symbol>
+      <symbol id="i-branch" viewBox="0 0 24 24"><path d="M6 6a2 2 0 1 0 0 .1M18 6a2 2 0 1 0 0 .1M6 18a2 2 0 1 0 0 .1M8 6h6M8 18h2a4 4 0 0 0 4-4V8"/></symbol>
+      <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.5l4.2 4.2L19 7"/></symbol>
+      <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.5-2.8 8.3-7 10-4.2-1.7-7-5.5-7-10V6z"/><path d="M9 12l2 2 4-5"/></symbol>
+      <symbol id="i-file" viewBox="0 0 24 24"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></symbol>
+      <symbol id="i-data" viewBox="0 0 24 24"><path d="M5 7c0-2 14-2 14 0s-14 2-14 0z"/><path d="M5 7v10c0 2 14 2 14 0V7"/><path d="M5 12c0 2 14 2 14 0"/></symbol>
+      <symbol id="i-bot" viewBox="0 0 24 24"><path d="M8 9h8a3 3 0 0 1 3 3v5a3 3 0 0 1-3 3H8a3 3 0 0 1-3-3v-5a3 3 0 0 1 3-3z"/><path d="M12 5v4M9 14h.1M15 14h.1M10 17h4"/></symbol>
+      <symbol id="i-wallet" viewBox="0 0 24 24"><path d="M4 7h15a1 1 0 0 1 1 1v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h12"/><path d="M16 13h4"/></symbol>
+      <symbol id="i-coins" viewBox="0 0 24 24"><path d="M6 7c0-2 10-2 10 0s-10 2-10 0z"/><path d="M6 7v5c0 2 10 2 10 0V7M8 15c0 2 10 2 10 0v-5M8 18c0 2 10 2 10 0v-3"/></symbol>
+      <symbol id="i-alert" viewBox="0 0 24 24"><path d="M12 4 21 20H3z"/><path d="M12 9v5M12 17h.1"/></symbol>
+      <symbol id="i-bell" viewBox="0 0 24 24"><path d="M18 9a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9"/><path d="M10 21h4"/></symbol>
+      <symbol id="i-user" viewBox="0 0 24 24"><path d="M12 12a4 4 0 1 0 0-8 4 4 0 0 0 0 8z"/><path d="M4 21a8 8 0 0 1 16 0"/></symbol>
+      <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></symbol>
+      <symbol id="i-reset" viewBox="0 0 24 24"><path d="M5 8a8 8 0 1 1 1 9"/><path d="M5 4v4h4"/></symbol>
+      <symbol id="i-send" viewBox="0 0 24 24"><path d="M3 20 21 12 3 4l3 8z"/><path d="M6 12h8"/></symbol>
+      <symbol id="i-moon" viewBox="0 0 24 24"><path d="M20 15.5A8 8 0 0 1 8.5 4 9 9 0 1 0 20 15.5z"/></symbol>
+    </svg>
+
+    <div class="app-shell">
+      <aside class="sidebar">
+        <div class="brand">
+          <div class="brand-mark">e</div>
+          <div>
+            <strong>Eczacibasi</strong>
+            <span>CFO Decision Cockpit</span>
+          </div>
+        </div>
+
+        <nav class="nav" aria-label="Primary">
+          <button class="nav-item active" data-section="overview"><svg><use href="#i-home"></use></svg><span>CFO Overview</span></button>
+          <button class="nav-item" data-section="forecast"><svg><use href="#i-trend"></use></svg><span>Cash Forecasting</span></button>
+          <button class="nav-item" data-section="treasury"><svg><use href="#i-bank"></use></svg><span>Treasury</span></button>
+          <button class="nav-item" data-section="working"><svg><use href="#i-cycle"></use></svg><span>Working Capital</span></button>
+          <button class="nav-item" data-section="scenario"><svg><use href="#i-branch"></use></svg><span>Scenario Lab</span></button>
+          <button class="nav-item" data-section="risk"><svg><use href="#i-shield"></use></svg><span>Risk</span></button>
+          <button class="nav-item" data-section="assistant"><svg><use href="#i-bot"></use></svg><span>AI Assistant</span></button>
+          <button class="nav-item" data-section="actions"><svg><use href="#i-check"></use></svg><span>Actions</span></button>
+          <button class="nav-item" data-section="data"><svg><use href="#i-data"></use></svg><span>Data & Drivers</span></button>
+        </nav>
+
+        <div class="sidebar-footer">
+          <span>Last data refresh</span>
+          <strong id="sidebarRefresh">Refresh pending</strong>
+          <span class="health-dot" id="sidebarQuality">Data quality pending</span>
+        </div>
+      </aside>
+
+      <main class="workspace">
+        <header class="topbar">
+          <div class="filters">
+            <button class="select-pill"><svg><use href="#i-bank"></use></svg><span id="filterEntity">Eczacibasi Group</span></button>
+            <button class="select-pill" id="filterPeriod">Period</button>
+            <button class="select-pill" id="filterCurrency">Currency</button>
+            <button class="select-pill" id="filterScenario">Scenario</button>
+          </div>
+          <div class="top-actions">
+            <button class="icon-button" id="themeToggle" title="Toggle dark cockpit"><svg><use href="#i-moon"></use></svg></button>
+            <button class="icon-button notification" title="Alerts"><svg><use href="#i-bell"></use></svg><span>3</span></button>
+            <button class="profile"><svg><use href="#i-user"></use></svg><span>Group CFO</span></button>
+          </div>
+        </header>
+
+        <div class="demo-banner" id="demoDisclaimer">Illustrative demo data. Not production figures. Outputs require finance review.</div>
+
+        <section class="section active" id="overview">
+          <div class="storyline">
+            <span>Forecast</span><b></b><span>Scenario</span><b></b><span>Action</span><b></b><span>Governance</span>
+          </div>
+
+          <div class="kpi-grid five" id="overviewKpis"></div>
+
+          <div class="layout-main">
+            <article class="panel span-2">
+              <div class="panel-head">
+                <div><h2>Cash Forecast Bridge (90D)</h2><p>Movement from prior forecast to revised forecast</p></div>
+              </div>
+              <div id="bridgeChart" class="chart tall"></div>
+              <div class="insight-strip" id="bridgeInsight">Key drivers: strong collections and favorable FX impact partly offset by vendor payments and inventory build.</div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head"><div><h2>Cash Forecast Scenarios (90D)</h2><p>Cumulative net cash position</p></div></div>
+              <div id="scenarioChart" class="chart tall"></div>
+            </article>
+
+            <article class="panel takeaway">
+              <div class="panel-head"><div><h2>Management Takeaway</h2></div></div>
+              <ul class="check-list" id="managementTakeaways"></ul>
+            </article>
+          </div>
+
+          <div class="layout-bottom">
+            <article class="panel">
+              <div class="panel-head"><div><h2>Liquidity Runway</h2><p>Based on downside scenario</p></div></div>
+              <div class="donut-wrap">
+                <div class="donut" id="runwayDonut" style="--value:0"><strong>—</strong><span>Days</span></div>
+                <div class="donut-copy">
+                  <span>Runway to zero cash</span>
+                  <strong id="runwayDate">—</strong>
+                  <span>Minimum cash threshold</span>
+                  <strong id="minimumCashThreshold">—</strong>
+                </div>
+              </div>
+              <div class="status-note ok" id="runwayNote">Comfortable runway above threshold.</div>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head"><div><h2>Covenant Monitor</h2><p id="covenantPeriod">Period</p></div></div>
+              <table class="data-table compact">
+                <thead><tr><th>Covenant</th><th>Actual</th><th>Limit</th><th>Headroom</th><th>Status</th></tr></thead>
+                <tbody id="covenantRows"></tbody>
+              </table>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head"><div><h2>Actions Tracker</h2></div></div>
+              <table class="data-table compact">
+                <thead><tr><th>Action</th><th>Owner</th><th>Due</th><th>Status</th></tr></thead>
+                <tbody id="overviewActionRows"></tbody>
+              </table>
+            </article>
+
+            <article class="panel wide">
+              <div class="panel-head"><div><h2>Business Units - Cash Position</h2><p>M TRY</p></div></div>
+              <div class="map-table">
+                <div class="mini-map">
+                  <span class="dot ist"></span><span class="dot izmir"></span><span class="dot adana"></span><span class="dot export"></span>
+                </div>
+                <table class="data-table compact">
+                  <thead><tr><th>BU</th><th>Cash</th><th>vs Apr 30</th></tr></thead>
+                  <tbody id="businessUnitRows"></tbody>
+                </table>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="forecast">
+          <div class="kpi-grid five" id="forecastKpis"></div>
+
+          <div class="forecast-grid">
+            <article class="panel span-2">
+              <div class="panel-head"><div><h2>Cash Balance - Actual & 12-Month Forecast</h2><p>Base, upside and downside paths</p></div></div>
+              <div id="cashBalanceChart" class="chart xlarge"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Scenario Details (90 Days)</h2></div></div>
+              <table class="data-table" id="forecastScenarioTable"></table>
+            </article>
+          </div>
+
+          <div class="layout-bottom">
+            <article class="panel">
+              <div class="panel-head"><div><h2>Key Drivers vs Plan</h2></div></div>
+              <div class="driver-list" id="forecastDrivers"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Sources</h2></div></div>
+              <div class="source-grid" id="forecastSources"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Recommended Actions</h2></div></div>
+              <div class="ranked-actions" id="forecastActions"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="treasury">
+          <div class="page-grid">
+            <article class="panel span-2">
+              <div class="panel-head"><div><h2>Treasury Liquidity View</h2><p>Cash, debt, covenants and funding windows</p></div></div>
+              <div id="treasuryChart" class="chart xlarge"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Funding Calendar</h2></div></div>
+              <div class="timeline-list" id="fundingCalendar"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Debt & Liquidity KPIs</h2></div></div>
+              <div class="metric-stack" id="treasuryMetrics"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>FX Exposure</h2></div></div>
+              <div id="fxExposureChart" class="chart medium"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="working">
+          <div class="kpi-grid four" id="workingKpis"></div>
+          <div class="page-grid">
+            <article class="panel">
+              <div class="panel-head"><div><h2>Receivables Aging Heatmap</h2><p>M TRY</p></div></div>
+              <table class="heatmap" id="receivablesHeatmap"></table>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Payables DPT Composition</h2><p>Next 13 weeks</p></div></div>
+              <table class="data-table" id="payablesTable"></table>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Drivers of Working Capital Impact</h2><p>vs last month</p></div></div>
+              <div id="wcDriverChart" class="chart medium"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Recommended Actions</h2></div></div>
+              <table class="data-table compact" id="workingActionsTable"></table>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="scenario">
+          <div class="scenario-layout">
+            <aside class="panel scenario-controls">
+              <div class="panel-head">
+                <div><h2>Scenario Controls</h2><p>Adjust key drivers to simulate impact</p></div>
+                <button class="tiny-button" id="resetScenario"><svg><use href="#i-reset"></use></svg>Reset</button>
+              </div>
+              <div class="scenario-presets" id="scenarioPresets"></div>
+              <div id="sliders"></div>
+              <button class="primary-button" id="runScenario"><svg><use href="#i-play"></use></svg>Run Simulation</button>
+              <p class="run-note" id="scenarioRunNote">Last run pending</p>
+            </aside>
+
+            <div class="scenario-main">
+              <article class="panel">
+                <div class="panel-head">
+                  <div><h2>Cash Balance Projection</h2><p>TRY million</p></div>
+                  <label class="switch"><input type="checkbox" checked id="bandToggle"><span></span>Show confidence band</label>
+                </div>
+                <div id="scenarioLabChart" class="chart xlarge"></div>
+              </article>
+
+              <div class="scenario-row">
+                <article class="panel">
+                  <div class="panel-head"><div><h2>Decision Recommendations</h2></div></div>
+                  <div class="recommendation-list" id="recommendations"></div>
+                </article>
+                <article class="panel">
+                  <div class="panel-head"><div><h2>Driver Contribution to Cash Impact</h2><p>TRY million</p></div></div>
+                  <div id="contributionChart" class="chart medium"></div>
+                </article>
+                <article class="panel">
+                  <div class="panel-head"><div><h2>Scenario Comparison</h2><p>End of period</p></div></div>
+                  <table class="data-table compact" id="scenarioTable"></table>
+                </article>
+              </div>
+            </div>
+
+            <aside class="impact-column">
+              <article class="panel impact-card">
+                <span>Cash Balance End Period</span>
+                <strong id="impactCash">—</strong>
+                <p id="impactCashDelta">—</p>
+              </article>
+              <article class="panel impact-card">
+                <span>Liquidity Coverage</span>
+                <strong id="impactLiquidity">—</strong>
+                <p id="impactLiquidityDelta">—</p>
+              </article>
+              <article class="panel impact-card positive">
+                <span>Working Capital Release</span>
+                <strong id="impactRelease">—</strong>
+                <p id="impactReleaseDelta">—</p>
+              </article>
+              <article class="panel impact-card">
+                <span>Composite Risk Level</span>
+                <strong id="impactRisk">—</strong>
+                <p id="impactRiskDelta">—</p>
+              </article>
+            </aside>
+          </div>
+        </section>
+
+        <section class="section" id="risk">
+          <div class="page-grid">
+            <article class="panel span-2">
+              <div class="panel-head"><div><h2>Liquidity Risk Distribution</h2><p>Number of months in each risk category</p></div></div>
+              <div id="riskDistributionChart" class="chart xlarge"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Risk Alerts</h2></div></div>
+              <div class="alert-list" id="riskAlerts"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Risk Heat Map</h2></div></div>
+              <table class="heatmap risk-map" id="riskHeatmap"></table>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Early Warning Signals</h2></div></div>
+              <div class="signal-grid" id="earlySignals"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="assistant">
+          <div class="assistant-layout">
+            <article class="panel chat-panel">
+              <div class="panel-head"><div><h2>CFO Decision Engine AI Assistant</h2><p>Explain movement, create scenarios, link sources and recommend actions</p></div></div>
+              <div id="chatLog" class="chat-log"></div>
+              <div class="prompt-row">
+                <button data-prompt="Why did the cash forecast deteriorate?">Forecast deterioration</button>
+                <button data-prompt="Show me a downside scenario if EUR/TRY rises to 48 and collections slow by 15%.">Downside scenario</button>
+                <button data-prompt="What actions can improve liquidity fastest?">Liquidity actions</button>
+              </div>
+              <form id="chatForm" class="chat-form">
+                <input id="chatInput" placeholder="Ask a question or request analysis..." />
+                <button class="icon-button" type="submit"><svg><use href="#i-send"></use></svg></button>
+              </form>
+            </article>
+
+            <article class="panel">
+              <div class="panel-head"><div><h2>Explanation</h2></div></div>
+              <p class="explain-copy" id="assistantExplanation">Assistant summary pending.</p>
+              <div class="source-grid" id="assistantSources"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="actions">
+          <div class="page-grid">
+            <article class="panel span-2">
+              <div class="panel-head"><div><h2>Decision Log</h2><p>Audit trail of recommended and approved CFO actions</p></div></div>
+              <table class="data-table" id="decisionLogTable">
+                <thead><tr><th>Date</th><th>Decision</th><th>Impact</th><th>Owner</th><th>Timing</th><th>Priority</th><th>Status</th></tr></thead>
+                <tbody id="decisionLogRows"></tbody>
+              </table>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Action Impact Mix</h2></div></div>
+              <div id="actionImpactChart" class="chart medium"></div>
+            </article>
+          </div>
+        </section>
+
+        <section class="section" id="data">
+          <div class="architecture">
+            <article class="arch-column" id="enterpriseDataColumn">
+              <h2>Enterprise Data</h2>
+              <span>ERP GL</span><span>AR / AP invoices</span><span>Orders & shipments</span><span>Inventory / production</span><span>Capex and debt schedules</span>
+            </article>
+            <article class="arch-column" id="externalDataColumn">
+              <h2>External & Risk Data</h2>
+              <span>Inflation</span><span>FX and rates</span><span>Commodity prices</span><span>Sector signals</span><span>Counterparty signals</span>
+            </article>
+            <article class="arch-column engine" id="engineDataColumn">
+              <h2>CFO Decision Engine</h2>
+              <span>Direct cash forecasts</span><span>Driver forecasts</span><span>Customer payment models</span><span>Scenario models</span><span>Anomaly detection</span>
+            </article>
+            <article class="arch-column" id="governanceDataColumn">
+              <h2>Governance</h2>
+              <span>Reconciliation</span><span>Cross-entity coherence</span><span>Explainability</span><span>Overrides & audit trail</span><span>Monitoring and drift</span>
+            </article>
+            <article class="arch-column" id="cockpitDataColumn">
+              <h2>CFO Cockpit</h2>
+              <span>Base / upside / downside</span><span>Risk heat map</span><span>Variance explanation</span><span>Action levers</span><span>Decision log</span>
+            </article>
+          </div>
+          <div class="page-grid">
+            <article class="panel">
+              <div class="panel-head"><div><h2>Source Systems</h2><p>Refresh and ownership</p></div></div>
+              <div class="source-grid" id="dataSources"></div>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Model Assumptions</h2><p>Demo governance notes</p></div></div>
+              <ul class="check-list" id="dataAssumptions"></ul>
+            </article>
+            <article class="panel">
+              <div class="panel-head"><div><h2>Data Quality</h2><p id="dataRefreshSummary">Refresh pending</p></div></div>
+              <div class="metric-stack" id="dataQualitySummary"></div>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
