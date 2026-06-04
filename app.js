@@ -1,6 +1,6 @@
 const demoData = {
   meta: {
-    entity: "Eczacibasi Group",
+    entity: "Northstar Group",
     period: "May 2025",
     currency: "TRY",
     unit: "M TRY",
@@ -951,6 +951,9 @@ function setActiveSection(id) {
   state.activeSection = id;
   document.querySelectorAll(".section").forEach(section => section.classList.toggle("active", section.id === id));
   document.querySelectorAll(".nav-item").forEach(item => item.classList.toggle("active", item.dataset.section === id));
+  if (window.location.hash !== `#${id}`) {
+    history.replaceState(null, "", `#${id}`);
+  }
   requestAnimationFrame(() => renderSection(id));
 }
 
@@ -1054,7 +1057,11 @@ function boot() {
   initScenarioControls();
   initChat();
   initResize();
-  renderSection("overview");
+  const hashSection = location.hash ? document.getElementById(location.hash.slice(1)) : null;
+  const initialSection = hashSection?.classList.contains("section")
+    ? hashSection.id
+    : "overview";
+  setActiveSection(initialSection);
 }
 
 document.addEventListener("DOMContentLoaded", boot);
