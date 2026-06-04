@@ -109,11 +109,11 @@ svg {
   display: grid;
   place-items: center;
   border: 2px solid var(--gold);
-  border-radius: 50%;
+  border-radius: 12px;
+  background: var(--gold-soft);
   color: var(--gold);
-  font-size: 28px;
+  font-size: 24px;
   font-weight: 800;
-  font-style: italic;
   line-height: 1;
 }
 
@@ -444,6 +444,11 @@ svg {
 .panel {
   padding: 16px;
   min-width: 0;
+  overflow: hidden;
+}
+
+.panel:has(.data-table),
+.panel:has(.heatmap) {
   overflow-x: auto;
 }
 
@@ -588,7 +593,7 @@ svg {
 
 .donut-wrap {
   display: grid;
-  grid-template-columns: 150px 1fr;
+  grid-template-columns: minmax(118px, 140px) minmax(0, 1fr);
   gap: 18px;
   align-items: center;
   min-height: 150px;
@@ -634,6 +639,7 @@ svg {
 .donut-copy {
   display: grid;
   gap: 6px;
+  min-width: 0;
 }
 
 .donut-copy span {
@@ -642,13 +648,14 @@ svg {
 
 .donut-copy strong {
   font-size: 20px;
+  overflow-wrap: anywhere;
 }
 
 .data-table,
 .heatmap {
   width: 100%;
   border-collapse: collapse;
-  table-layout: fixed;
+  table-layout: auto;
 }
 
 .data-table {
@@ -656,7 +663,7 @@ svg {
 }
 
 .data-table.compact {
-  min-width: 520px;
+  min-width: 100%;
 }
 
 .heatmap {
@@ -671,7 +678,7 @@ svg {
   border-bottom: 1px solid var(--line);
   text-align: left;
   vertical-align: middle;
-  overflow-wrap: anywhere;
+  overflow-wrap: normal;
 }
 
 .data-table th,
@@ -685,6 +692,12 @@ svg {
 .data-table.compact td {
   padding: 8px 8px;
   font-size: 12px;
+}
+
+.data-table th:last-child,
+.data-table td:last-child {
+  width: 1%;
+  white-space: nowrap;
 }
 
 .badge {
@@ -877,13 +890,12 @@ svg {
 
 .scenario-layout {
   display: grid;
-  grid-template-columns: 300px minmax(0, 1fr) 260px;
+  grid-template-columns: 300px minmax(0, 1fr);
   gap: 16px;
   align-items: start;
 }
 
-.scenario-controls,
-.impact-column {
+.scenario-controls {
   position: sticky;
   top: 100px;
 }
@@ -978,13 +990,15 @@ svg {
 
 .scenario-row {
   display: grid;
-  grid-template-columns: minmax(260px, 0.9fr) minmax(320px, 1fr) minmax(340px, 1.1fr);
+  grid-template-columns: minmax(240px, 0.9fr) minmax(260px, 1fr) minmax(300px, 1.1fr);
   gap: 16px;
 }
 
 .impact-column {
   display: grid;
   gap: 12px;
+  grid-column: 1 / -1;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
 }
 
 .impact-card {
@@ -1064,8 +1078,9 @@ svg {
 }
 
 .alert-list div {
-  grid-template-columns: 26px 1fr auto;
+  grid-template-columns: 28px minmax(0, 1fr) max-content;
   align-items: center;
+  gap: 12px;
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: var(--radius);
@@ -1075,9 +1090,22 @@ svg {
   color: var(--red);
 }
 
+.alert-list span {
+  min-width: 0;
+  line-height: 1.35;
+}
+
 .alert-list b {
+  display: inline-flex;
+  align-items: center;
+  min-height: 24px;
+  padding: 0 8px;
+  border-radius: 6px;
+  background: var(--red-soft);
   color: var(--red);
   font-size: 12px;
+  justify-self: end;
+  white-space: nowrap;
 }
 
 .signal-grid {
@@ -1238,6 +1266,17 @@ svg {
   background: var(--gold-soft);
 }
 
+@media (max-width: 1700px) {
+  .scenario-layout {
+    grid-template-columns: 300px minmax(0, 1fr);
+  }
+
+  .impact-column {
+    grid-column: 1 / -1;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
 @media (max-width: 1500px) {
   .layout-bottom {
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -1256,7 +1295,6 @@ svg {
   }
 
   .impact-column {
-    position: static;
     grid-column: 1 / -1;
     grid-template-columns: repeat(4, minmax(0, 1fr));
   }
@@ -1286,7 +1324,6 @@ svg {
   }
 
   .impact-column {
-    position: static;
     grid-column: 1 / -1;
     grid-template-columns: repeat(4, minmax(180px, 1fr));
   }
@@ -1377,13 +1414,13 @@ svg {
     position: static;
   }
 
-  .impact-column {
-    position: static;
-  }
-
   .map-table,
   .donut-wrap {
     grid-template-columns: 1fr;
+  }
+
+  .donut-wrap {
+    justify-items: start;
   }
 
   .select-pill {
@@ -1392,6 +1429,15 @@ svg {
 
   .arch-column:not(:last-child)::after {
     display: none;
+  }
+
+  .alert-list div {
+    grid-template-columns: 28px minmax(0, 1fr);
+  }
+
+  .alert-list b {
+    grid-column: 2;
+    justify-self: start;
   }
 }
 
