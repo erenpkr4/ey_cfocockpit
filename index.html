@@ -104,15 +104,22 @@
           </div>
 
           <div class="layout-bottom">
-            <article class="panel">
+            <article class="panel runway-panel">
               <div class="panel-head"><div><h2>Liquidity Runway</h2><p>Based on downside scenario</p></div></div>
-              <div class="donut-wrap">
-                <div class="donut" id="runwayDonut" style="--value:0"><strong>—</strong><span>Days</span></div>
-                <div class="donut-copy">
-                  <span>Runway to zero cash</span>
-                  <strong id="runwayDate">—</strong>
-                  <span>Minimum cash threshold</span>
-                  <strong id="minimumCashThreshold">—</strong>
+              <div class="runway-card">
+                <div class="donut" id="runwayDonut" style="--value:0">
+                  <strong>—</strong>
+                  <span>Days</span>
+                </div>
+                <div class="runway-facts">
+                  <div class="runway-fact">
+                    <span>Runway to zero cash</span>
+                    <strong id="runwayDate">—</strong>
+                  </div>
+                  <div class="runway-fact">
+                    <span>Minimum cash threshold</span>
+                    <strong id="minimumCashThreshold">—</strong>
+                  </div>
                 </div>
               </div>
               <div class="status-note ok" id="runwayNote">Comfortable runway above threshold.</div>
